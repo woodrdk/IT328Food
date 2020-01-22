@@ -1,0 +1,12 @@
+{
+  "name": "328/IT328Food",
+  "authors": [
+    {
+      "name": "Robert Wood",
+      "email": "rwood3@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
