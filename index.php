@@ -19,6 +19,19 @@ $f3 -> route('GET /', function(){
 
 });
 
+$f3 -> route('GET /order', function(){
+    $view = new Template();
+    echo $view->render('views/form1.html');
+});
+$f3 -> route('POST /order2', function(){
+    $view = new Template();
+    echo $view->render('views/form2.html');
+});
+$f3 -> route('POST /summary', function(){
+    $view = new Template();
+    echo $view->render('views/results.html');
+});
+
 $f3 -> route('GET /breakfast', function(){
     $view = new Template();
     echo $view->render('views/breakfast.html');
