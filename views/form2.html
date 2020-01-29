@@ -12,11 +12,15 @@
         <h1> Food Order</h1>
     </div>
         <div class="row">
-            <form method = "post" action ="summary">
+            <form method = "post" action ="order3">
                 <label>Which menu?<br>
-                    <input type="radio" name="Breakfast" value="breakfast"> Breakfast<br>
-                    <input type="radio" name="Lunch" value="lunch"> Lunch<br>
-                    <input type="radio" name="Dinner" value="dinner"> Dinner
+                    <repeat group="{{ @meal }}" value="{{ @cond }}">
+                        <input type="radio" name="meal" value="{{ @cond }}"> {{ @cond }}<br>
+                    </repeat>
+
+                    <input type="radio" name="meal" value="breakfast"> Breakfast<br>
+                    <input type="radio" name="meal" value="lunch"> Lunch<br>
+                    <input type="radio" name="meal" value="dinner"> Dinner
                 </label><br>
                 <input type="submit" value="Next >>">
             </form>

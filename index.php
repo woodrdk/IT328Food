@@ -22,28 +22,54 @@ $f3 -> route('GET /', function(){
 
 });
 
-$f3 -> route('GET /order', function(){
+$f3 -> route('GET|POST /order', function(){
+
+    // check to see if form has been submitted
+
+    if(isset($_POST)){
+        // validate the data
+
+    }
     $view = new Template();
     echo $view->render('views/form1.html');
 });
-$f3 -> route('POST /order2', function(){
+
+$f3 -> route('POST /order2', function($f3){
     // var_dump($_POST);
+    $f3 -> set('meal', array('breakfast', 'lunch', 'dinner'));
     $_SESSION['food'] = $_POST['food'];
     $view = new Template();
     echo $view->render('views/form2.html');
 });
 
-$f3 -> route('POST /order3', function(){
+$f3 -> route('POST /order3', function($f3){
     // var_dump($_POST);
     $_SESSION['meal'] = $_POST['meal'];
-
+    $f3 -> set('drinks', array('pepsi', 'water', 'coke'));
+    $f3 -> set('condiments', array('mayonnaise', 'mustard', 'ketchup'));
     $view = new Template();
     echo $view->render('views/form3.html');
 });
 
 $f3 -> route('POST /summary', function(){
-    var_dump($_POST);
-    var_dump($_SESSION);
+   // var_dump($_POST);
+   // var_dump($_SESSION);
+    $_SESSION["cond"] = "";
+    $count = 0;
+    if($_POST['cond'] > 0){
+        foreach ($_POST['cond'] as $result){
+            if($count > 0){
+                $_SESSION["cond"] .= ", ".$result;
+            }
+            else{
+                $_SESSION["cond"] .= " ".$result;
+                $count++;
+            }
+        }
+    }
+    else{
+        $_SESSION["cond"] = " NONE";
+    }
     $_SESSION['drink'] = $_POST['drink'];
     $view = new Template();
     echo $view->render('views/results.html');

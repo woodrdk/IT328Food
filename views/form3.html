@@ -8,9 +8,30 @@
         <hr class="my-2">
     </div>
     <div class="container">
-        <h1> Thank you for your order</h1>
-        <h2>You ordered {{ @SESSION.food }} for {{ @SESSION.meal }} with a {{ @SESSION.drink }} & the condiments of
-            {{ @SESSION.cond }} </h2>
+    <div class="row">
+        <h1> Food Order</h1>
+    </div>
+        <div class="row">
+            <form method = "post" action ="summary">
+                <label>Pick a drink?<br>
+                    <select name="drink">
+                        <repeat group="{{ @drinks }}" value="{{ @cond }}">
+                            <option value="{{ @cond }}">{{ @cond }}<br>
+                        </repeat>
+
+                        <option value="Pepsi">Pepsi</option>
+                        <option value="Coke">Coke</option>
+                        <option value="Water">Water</option>
+                    </select>
+                </label><br>
+
+                <repeat group="{{ @condiments }}" value="{{ @cond }}">
+                    <input type="checkbox" name="cond[]" value="{{ @cond }}">{{ @cond }}<br>
+                </repeat>
+                <input type="submit" value="Next >>">
+            </form>
+
+        </div>
     </div>
 </div>
 
